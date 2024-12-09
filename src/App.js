@@ -1,7 +1,12 @@
-import "./App.css";
+import React from "react";
+import StarRating from "./components/StarRating";
 
 function App() {
-  return <div className="App">Hello</div>;
+  return (
+    <>
+      <StarRating />
+    </>
+  );
 }
 
 export default App;
