@@ -1,11 +1,15 @@
 import React from "react";
 import StarRating from "./components/StarRating";
+import Modal from "./components/ModalComponent";
+import InputBox from "./components/DebouncedInputBox";
 
 function App() {
   return (
-    <div>
-      <StarRating />
-    </div>
+    <>
+      {/* <StarRating /> */}
+      {/* <InputBox /> */}
+      <Modal />
+    </>
   );
 }
 
