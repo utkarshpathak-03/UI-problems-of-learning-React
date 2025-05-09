@@ -1,0 +1,15 @@
+.Parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: gray;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+.StarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
