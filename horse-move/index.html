@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess Horse Moves</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        overflow: hidden;
+      }
+      h1 {
+        position: absolute;
+        top: 20px;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      #chessboard {
+        display: grid;
+        grid-template-columns: repeat(8, 50px);
+        grid-template-rows: repeat(8, 50px);
+        border: 2px solid #333;
+        box-shadow: 0 30px 30px rgba(0, 0, 0, 0.5);
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+      .square {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+      .white {
+        background-color: #fff;
+      }
+      .black {
+        background-color: #000;
+      }
+      .highlight {
+        background-color: yellow !important;
+      }
+      .suggestion {
+        background-color: rgba(255, 255, 0, 0.5) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chess Horse Moves</h1>
+    <div id="chessboard"></div>
+
+    <script>
+      const chessboard = document.getElementById("chessboard");
+      const squares = [];
+
+      // Create chessboard squares
+      for (let row = 0; row < 8; row++) {
+        squares[row] = [];
+        for (let col = 0; col < 8; col++) {
+          const square = document.createElement("div");
+          square.className =
+            "square " + ((row + col) % 2 === 0 ? "white" : "black");
+          square.dataset.row = row;
+          square.dataset.col = col;
+          chessboard.appendChild(square);
+          squares[row][col] = square;
+
+          // Add hover event listeners to show suggestions
+          square.addEventListener("mouseenter", () => {
+            showSuggestions([row, col]);
+          });
+          square.addEventListener("mouseleave", () => {
+            clearSuggestions();
+          });
+        }
+      }
+
+      // Function to calculate horse moves
+      function getHorseMoves(position) {
+        const moves = [];
+        const x = position[0];
+        const y = position[1];
+
+        const potentialMoves = [
+          [x + 2, y + 1],
+          [x + 2, y - 1],
+          [x - 2, y + 1],
+          [x - 2, y - 1],
+          [x + 1, y + 2],
+          [x + 1, y - 2],
+          [x - 1, y + 2],
+          [x - 1, y - 2],
+        ];
+
+        potentialMoves.forEach((move) => {
+          if (move[0] >= 0 && move[0] < 8 && move[1] >= 0 && move[1] < 8) {
+            moves.push(move);
+          }
+        });
+
+        return moves;
+      }
+
+      // Function to show suggestions on hover
+      function showSuggestions(position) {
+        const moves = getHorseMoves(position);
+        moves.forEach((move) => {
+          const [row, col] = move;
+          squares[row][col].classList.add("suggestion");
+        });
+      }
+
+      // Function to clear suggestions
+      function clearSuggestions() {
+        document.querySelectorAll(".suggestion").forEach((square) => {
+          square.classList.remove("suggestion");
+        });
+      }
+    </script>
+  </body>
+</html>
