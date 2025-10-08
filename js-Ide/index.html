@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SuperIDE - JavaScript Online Editor</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.34.1/min/vs/loader.min.js"></script>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="header">
+      <div class="branding">
+        <h1 class="logo animate-logo">SuperIDE</h1>
+        <p class="subtitle">JavaScript Code Compiler</p>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button class="lang-btn active" data-lang="js">JS</button>
+        <button class="lang-btn" data-lang="python">Py</button>
+        <button class="lang-btn" data-lang="java">Java</button>
+        <button class="lang-btn" data-lang="cpp">C++</button>
+      </aside>
+
+      <!-- Editor Area -->
+      <section class="editor-container">
+        <div class="editor-header">
+          <span class="filename">index.js</span>
+          <div class="editor-actions">
+            <button id="toggle-theme" class="secondary-btn">🌙</button>
+            <button id="run-btn" class="primary-btn">▶ Run</button>
+          </div>
+        </div>
+        <div id="editor"></div>
+      </section>
+
+      <!-- Output Area -->
+      <section class="output-container">
+        <div class="output-header">
+          <h3>Output</h3>
+          <button id="clear-btn" class="danger-btn">Clear</button>
+        </div>
+        <pre id="output" class="output"></pre>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
